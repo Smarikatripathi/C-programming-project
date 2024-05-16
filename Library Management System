@@ -1,0 +1,297 @@
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+#include <stdlib.h>
+void add(void);
+void disp(void);
+void del(void);
+void search(void);
+void searchBook(void);
+//void edit(void);
+void ab(void);
+void view(void);
+//void top(void);
+void screen(void);
+main()
+{
+//	screen();
+//void screen(void)
+//{
+
+int ch;
+char a[1];
+int c=1;
+
+TOP:	
+system("cls");
+		printf("\n\t\t\t\t\t\t Main Menu\n");
+ printf("\n\t\t 1=Adding Records\n");
+  printf("\n\t\t 2=Displaying Records\n");
+   printf("\n\t\t 3=Deleting Records\n");
+     printf("\n\t\t 4=Searching Student's Info\n");
+   printf("\n\t\t 5=Searching Book Info\n");
+   printf("\n\t\t 6=View Book Name and Code\n");
+   printf("\n\t\t 7=Exit Program\t");
+    printf("\n\t\t\t\t\t\t Enter your choice\t");
+      
+    scanf("%d",&ch);
+    switch(ch)
+    {case 1:
+    	{
+    		add();
+    		printf("\n\n\n\n\t\t\t\tPress 1 to return Main Menu\t");
+    		scanf("%d",&c);
+    		//strupr(a);
+    		if(c==1)
+    		goto TOP;
+		}
+		case 2:
+    	{
+    		disp();
+    		printf("\n\n\n\n\t\t\t\t Press 1 to return Main Menu\t");
+    		scanf("%d",&c);
+    		
+    		if(c==1)
+    		goto TOP;
+    		
+		}
+		case 3:
+    	{
+    		del();
+    		printf("\n\n\n\n\t\t\t\t Press 1 to return Main Menu\t");
+    		scanf("%d",&c);
+    		
+    		if(c==1)
+    		goto TOP;
+		}
+		case 4:
+    	{
+    		search();
+    		printf("\n\n\n\n\t\t\t\t Press 1 to return Main Menu\t");
+    		scanf("%d",&c);
+    		
+    		if(c==1)
+    		goto TOP;
+		}
+
+		
+		case 5:
+    	{
+    		searchBook();
+    		printf("\n\n\n\n\t\t\t\t Press 1 to return Main Menu\t");
+    		scanf("%d",&c);
+    		
+    		if(c==1)
+    		goto TOP;
+    	}
+    	case 6:
+    	{
+    		view();
+    		printf("\n\n\n\n\t\t\t\t Press 1 to return Main Menu\t");
+    		scanf("%d",&c);
+    		
+    		if(c==1)
+    		goto TOP;
+    	}
+    	default :
+    	system("cls");	
+    	printf("\n\n\n\n\n\n\n\t\t\t\t\t\t Thanks For Using Our Program\t");
+    	exit (0);
+	}
+	getch();
+	//return 0;
+}
+void add(void)
+{
+system("cls");
+FILE *fp;
+struct student
+{char bn [30],name[60],add[30],sta[30],issd[10],ph[10];
+int C,id;
+}st[100];
+int i=1,j,a=1;
+fp=fopen("record.dat","a");
+printf("\n\n\n\n\t\t\t\t\t\tPlease Enter Data\n\n\n");
+while (a==1)
+{printf("\n\t\t\tBook-Name\t");
+scanf("%s",st[i].bn);
+printf("\n\t\t\tBook-Id\t");
+scanf("%d",&st[i].id);
+printf("\n\t\t\tBook-Cost\t");
+scanf("%d",&st[i].C);
+printf("\n\t\t\tStudent's Name\t");
+scanf("%s",st[i].name);
+printf("\n\t\t\tAddress\t");
+scanf("%s",st[i].add);
+printf("\n\t\t\tContact[5digit]\t\t");
+scanf("%s",st[i].ph);
+printf("\n\t\t\tStatus[Yes/No]\t");
+scanf("%s",st[i].sta);
+printf("\n\t\t\tIssue-Date[0-0-0000]\t");
+scanf("%s",st[i].issd);
+fprintf(fp,"%s\t%d\t%d\t%s\t%s\t%s\t%s\t%s",st[i].bn,st[i].id,st[i].C,st[i].name,st[i].add,st[i].ph,st[i].sta,st[i].issd); 
+printf("\n\n\n\n\n\t\t\t\t\t\t Press 1 To Enter More Records");
+scanf("%d",&a);
+//strupr(a);
+i=i+1;
+}
+fclose(fp);
+getch();
+}
+void disp(void)
+{
+system("cls");
+FILE *fp;
+struct student
+{char bn [30],name[60],add[30],sta[30];
+int C,ph,id;
+char date[10];
+}st[100];
+int i=1,j;
+fp=fopen("record.dat","r");
+printf("\n\n\n\n\n\t\tBName\tBId\tCost\tIssuedTo\tAddress\tPhNumber\tStatus\t\tDate");
+ 
+while(fscanf(fp,"%s%d%d%s%s%d%s%s",st[i].bn,&st[i].id,&st[i].C,st[i].name,st[i].add,&st[i].ph,st[i].sta,st[i].date)!=EOF)
+{
+printf("\n\n\t\t%s\t%d\t%d\t%s\t\t%s\t%d\t\t%s\t\t%s",st[i].bn,st[i].id,st[i].C,st[i].name,st[i].add,st[i].ph,st[i].sta,st[i].date);
+i=i+1;
+}
+fclose(fp);
+getch();
+} 
+void view(void)
+{
+system("cls");
+FILE *fp;
+struct student
+{char bn [30],name[60],add[30],sta[30];
+int C,ph,id;
+char date[10];
+}st[100];
+int i=1,j;
+fp=fopen("record.dat","r");
+printf("\n\n\n\n\t\t\t\tBook-Name\t\tBook-Id");
+ 
+while(fscanf(fp,"%s%d%d%s%s%d%s%s",st[i].bn,&st[i].id,&st[i].C,st[i].name,st[i].add,&st[i].ph,st[i].sta,st[i].date)!=EOF)
+{
+printf("\n\t\t\t\t%s\t\t%d",st[i].bn,st[i].id);
+i=i+1;
+}
+fclose(fp);
+getch();
+} 
+void del(void)
+{
+system("cls");
+FILE *p1,*p2;
+struct student
+{char bn [30],name[60],add[30],sta[30];
+int C,ph,id;
+char date[10];
+}st[100];
+int i=1,j,ans,f=0;
+int bid;
+char bname[30];
+p1=fopen("record.dat","r");
+p2=fopen("temp.dat","w");
+printf("\n\n\n\n\t\t\t\tType Book Name & Id to delete ");
+scanf("%s,%d\t",bname,&bid);
+strupr(bname);
+while(fscanf(p1,"%s%d%d%s%s%d%s%s",st[i].bn,&st[i].id,&st[i].C,st[i].name,st[i].add,&st[i].ph,st[i].sta,st[i].date)!=EOF)
+{
+	strupr(st[i].bn);
+if(strcmp(bname,st[i].bn)!=0)
+{
+fprintf(p2,"\n%s\t%d\t%d\t%s\t%s\t%d\t%s\t%s ",st[i].bn,&st[i].id,&st[i].C,st[i].name,st[i].add,&st[i].ph,st[i].sta,st[i].date); 
+}
+}
+printf("\n\t\t\t\tRecord Deleted");
+//scanf("%d",&ans);
+
+fclose(p1);
+fclose(p2);
+remove("record.dat");
+rename("temp.dat","record.dat");
+getch();
+}
+void search(void)
+{
+system("cls");
+FILE *fp;
+struct student
+{char name[60],add[30],sta[30],bn[30];
+int C,ph,id,n;
+char date[10];
+}st[100];
+int i=0,j=0;
+char na[30];
+fp=fopen("record.dat","r");
+    printf("\n\tEnter Name of student to search:");
+    scanf("%s",na);
+    while(fscanf(fp,"%s%d%d%s%s%d%s%f",st[i].bn,&st[i].id,&st[i].C,st[i].name,st[i].add,&st[i].ph,st[i].sta,&st[i].date)!=EOF)
+   {
+   	strupr(na);
+    strupr(st[i].name);
+    if(strcmp(na,st[i].name)==0)
+    {
+	printf("\n%s\t%d\t%d\t%s\t%s\t%d\t%s\t%f ",st[i].bn,&st[i].id,&st[i].C,st[i].name,st[i].add,&st[i].ph,st[i].sta,&st[i].date); 
+	j=j+1;
+	}
+}
+if(j==0)   
+{
+printf("\n\t Sorry ! Record Not Available");}
+	   
+    fclose(fp);
+    getch();
+}
+void searchBook(void)
+{
+system("cls");
+FILE *fp;
+struct student
+{char name[60],add[30],sta[30],bn[30];
+int C,ph,id,n;
+char date[10];
+}st[100];
+int i=0,j=0;
+char na[30];
+fp=fopen("record.dat","r");
+    printf("\n\tEnter Book Name to search:");
+    scanf("%s",na);
+    while(fscanf(fp,"%s%d%d%s%s%d%s%f",st[i].bn,&st[i].id,&st[i].C,st[i].name,st[i].add,&st[i].ph,st[i].sta,&st[i].date)!=EOF)
+{	strupr(na);
+    strupr(st[i].bn);
+    if(strcmp(na,st[i].bn)==0)
+    {
+	printf("\n%s\t%d\t%d\t%s\t%s\t%d\t%s\t%f ",st[i].bn,&st[i].id,&st[i].C,st[i].name,st[i].add,&st[i].ph,st[i].sta,&st[i].date); 
+	j=j+1;
+	}
+	
+}
+if(j==0)   
+{
+printf("\n\t Sorry ! Book Not Available");}
+    fclose(fp);
+    getch();
+}
+
+void ab(void)
+{
+system("cls");
+FILE *fr;
+struct list
+{char bn[100];
+double id;
+}st[100];
+int i;
+fr=fopen("list.dat","w");
+for(i=0;i<1;i++)
+{
+printf("Enter book name,book id,");
+gets(st[i].bn);
+fprintf(fr,"%s\t%d",st[i].bn,st[i].id); 
+}
+fclose(fr);
+getch();
+}
