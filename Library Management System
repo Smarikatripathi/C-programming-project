@@ -1,12 +1,14 @@
+//Library Management System Project using C programming.
 #include<stdio.h>
 #include<conio.h>
 #include<string.h>
 #include <stdlib.h>
-void add(void);
-void disp(void);
-void del(void);
-void search(void);
-void searchBook(void);
+   
+   void add(void);
+   void disp(void);
+   void del(void);
+   void search(void);
+   void searchBook(void);
 //void edit(void);
 void ab(void);
 void view(void);
@@ -24,15 +26,16 @@ int c=1;
 
 TOP:	
 system("cls");
-		printf("\n\t\t\t\t\t\t Main Menu\n");
- printf("\n\t\t 1=Adding Records\n");
-  printf("\n\t\t 2=Displaying Records\n");
-   printf("\n\t\t 3=Deleting Records\n");
-     printf("\n\t\t 4=Searching Student's Info\n");
-   printf("\n\t\t 5=Searching Book Info\n");
-   printf("\n\t\t 6=View Book Name and Code\n");
-   printf("\n\t\t 7=Exit Program\t");
-    printf("\n\t\t\t\t\t\t Enter your choice\t");
+      printf("\n\t\t\t\t\t\t Main Menu\n");
+
+      printf("\n\t\t 1=Adding Records\n");
+      printf("\n\t\t 2=Displaying Records\n");
+      printf("\n\t\t 3=Deleting Records\n");
+      printf("\n\t\t 4=Searching Student's Info\n");
+      printf("\n\t\t 5=Searching Book Info\n");
+      printf("\n\t\t 6=View Book Name and Code\n");
+      printf("\n\t\t 7=Exit Program\t");
+      printf("\n\t\t\t\t\t\t Enter your choice\t");
       
     scanf("%d",&ch);
     switch(ch)
